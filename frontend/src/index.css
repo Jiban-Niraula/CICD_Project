@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ====================================================
+   Design Tokens
+   ==================================================== */
+:root {
+  /* Core palette */
+  --primary:       262 83% 58%;  /* #7c3aed (Violet-600) */
+  --primary-hover: 262 83% 52%;
+  --secondary:     221 83% 53%;  /* #3b82f6 (Blue-500) */
+
+  /* Business-type accents */
+  --accent-gym:    25  95% 53%;  /* #f97316 (Orange) */
+  --accent-salon:  326 95% 60%;  /* #ec4899 (Pink) */
+  --accent-clinic: 162 90% 40%;  /* #10b981 (Emerald) */
+
+  /* Surface */
+  --bg-base:            210 40% 98%;
+  --bg-surface:         0   0% 100%;
+  --bg-surface-frosted: 0   0% 100% / 0.7;
+  --border:             215 15% 90%;
+  --border-frosted:     0   0% 100% / 0.5;
+
+  /* Text */
+  --text-main:  224 71%  4%;
+  --text-body:  215 25% 27%;
+  --text-muted: 215 16% 47%;
+
+  /* Shadows */
+  --shadow-sm:      0 1px  2px 0   rgba(0,0,0,.05);
+  --shadow-md:      0 4px  6px -1px rgba(0,0,0,.05), 0 2px 4px -2px rgba(0,0,0,.05);
+  --shadow-lg:      0 10px 15px -3px rgba(99,102,241,.05), 0 4px 6px -4px rgba(99,102,241,.05);
+  --shadow-premium: 0 20px 25px -5px rgba(0,0,0,.05), 0 8px 10px -6px rgba(0,0,0,.03);
+  --shadow-glow:    0 0 50px -10px hsl(var(--primary) / .15);
+
+  /* Typography */
+  --font-sans:    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: 'Outfit', var(--font-sans);
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Transitions */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:   0.4s  cubic-bezier(0.4, 0, 0.2, 1);
+
+  color-scheme: light;
+}
+
+/* Dark theme via data attribute (legacy support) */
+[data-theme="dark"] {
+  --bg-base:            222 47%  7%;
+  --bg-surface:         222 40% 11%;
+  --bg-surface-frosted: 222 40% 11% / 0.65;
+  --border:             222 25% 18%;
+  --border-frosted:     222 25% 18% / 0.5;
+  --text-main:  210 40% 98%;
+  --text-body:  215 20% 75%;
+  --text-muted: 215 15% 55%;
+  --shadow-sm:      0 1px  2px 0   rgba(0,0,0,.5);
+  --shadow-md:      0 4px  6px -1px rgba(0,0,0,.3), 0 2px 4px -2px rgba(0,0,0,.3);
+  --shadow-lg:      0 10px 15px -3px rgba(0,0,0,.4), 0 4px 6px -4px rgba(0,0,0,.4);
+  --shadow-premium: 0 20px 25px -5px rgba(0,0,0,.5), 0 8px 10px -6px rgba(0,0,0,.4);
+  --shadow-glow:    0 0 50px -10px hsl(var(--primary) / .3);
+  color-scheme: dark;
+}
+
+/* ====================================================
+   Base Overrides (layered on top of Tailwind preflight)
+   ==================================================== */
+@layer base {
+  html, body {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  a {
+    transition: color var(--transition-fast);
+  }
+}
+
+/* ====================================================
+   Custom Component Classes
+   ==================================================== */
+@layer components {
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5
+           text-sm font-semibold rounded-xl border border-transparent
+           cursor-pointer whitespace-nowrap transition-all duration-200;
+  }
+
+  .btn-primary {
+    background-color: hsl(var(--primary));
+    color: #fff;
+    box-shadow: 0 4px 14px 0 hsl(var(--primary) / 0.3);
+  }
+  .btn-primary:hover {
+    background-color: hsl(var(--primary-hover));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px 0 hsl(var(--primary) / 0.4);
+  }
+
+  .btn-secondary {
+    background-color: hsl(var(--bg-surface));
+    color: hsl(var(--text-main));
+    border-color: hsl(var(--border));
+    box-shadow: var(--shadow-sm);
+  }
+  .btn-secondary:hover {
+    background-color: hsl(var(--border) / 0.3);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: hsl(var(--text-main));
+    border: 1px solid hsl(var(--border));
+  }
+  .btn-outline:hover {
+    background-color: hsl(var(--text-main) / 0.05);
+  }
+
+  /* Glassmorphism card */
+  .glass {
+    background: hsl(var(--bg-surface-frosted));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border-frosted));
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1
+           text-xs font-semibold rounded-full uppercase tracking-wider;
+  }
+}
+
+/* ====================================================
+   Utilities
+   ==================================================== */
+@layer utilities {
+  /* Radial glow background */
+  .radial-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.8;
+    transition: opacity var(--transition-slow);
+  }
+  .radial-bg::before {
+    content: "";
+    position: absolute;
+    top: -20%; left: -10%;
+    width: 70vw; height: 70vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsl(var(--primary) / 0.08) 0%, transparent 70%);
+  }
+  .radial-bg::after {
+    content: "";
+    position: absolute;
+    bottom: -10%; right: -10%;
+    width: 60vw; height: 60vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsl(var(--secondary) / 0.08) 0%, transparent 70%);
+  }
+}
+
+/* ====================================================
+   Custom Scrollbar (purple accent)
+   ==================================================== */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #6d28d9; }
+
+/* ====================================================
+   Root element stretches full height
+   ==================================================== */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container Centering Class */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
