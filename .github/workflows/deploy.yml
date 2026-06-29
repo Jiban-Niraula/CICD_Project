@@ -24,21 +24,19 @@ jobs:
           EOF
 
       - name: Stop Existing Containers
-        run: |
-          docker compose -f docker-compose.prod.yml down || true
+        run: docker compose -f docker-compose.prod.yml down || true
 
-      - name: Remove Old Images
-        run: |
-          docker image prune -af
+      - name: Clean Docker
+        run: docker system prune -af
 
       - name: Build Images
-        run: |
-          docker compose -f docker-compose.prod.yml build --no-cache
+        run: docker compose -f docker-compose.prod.yml build --no-cache
 
       - name: Start Containers
-        run: |
-          docker compose -f docker-compose.prod.yml up -d
+        run: docker compose -f docker-compose.prod.yml up -d
 
       - name: Verify Deployment
         run: |
+          sleep 10
           docker compose -f docker-compose.prod.yml ps
+          docker compose -f docker-compose.prod.yml logs backend --tail=50
