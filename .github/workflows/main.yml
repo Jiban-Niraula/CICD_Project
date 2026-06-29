@@ -1,0 +1,44 @@
+name: Deploy SaaS Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: |
+          cat > .env << EOF
+          PORT=${{ secrets.PORT }}
+          MONGO_URL=${{ secrets.MONGO_URL }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          ESEWA_PRODUCT_CODE=${{ secrets.ESEWA_PRODUCT_CODE }}
+          ESEWA_SECRET_KEY=${{ secrets.ESEWA_SECRET_KEY }}
+          EOF
+
+      - name: Stop Existing Containers
+        run: |
+          docker compose -f docker-compose.prod.yml down || true
+
+      - name: Remove Old Images
+        run: |
+          docker image prune -af
+
+      - name: Build Images
+        run: |
+          docker compose -f docker-compose.prod.yml build --no-cache
+
+      - name: Start Containers
+        run: |
+          docker compose -f docker-compose.prod.yml up -d
+
+      - name: Verify Deployment
+        run: |
+          docker compose -f docker-compose.prod.yml ps
