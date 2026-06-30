@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api/bookings';
+const API_URL = 'http://saas-backend:5000/api/bookings';
 
 export const getBookings = async (token, businessId) => {
   const res = await fetch(API_URL, {

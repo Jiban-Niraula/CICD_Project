@@ -142,7 +142,7 @@ export const AuthProvider = ({ children }) => {
       const token = localStorage.getItem('saas_token');
       if (token && !token.startsWith('mock-')) {
         try {
-          const response = await fetch('http://localhost:5000/api/auth/select-business', {
+          const response = await fetch('http://saas-backend:5000/api/auth/select-business', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -201,7 +201,7 @@ export const AuthProvider = ({ children }) => {
         payload.username = usernameOrEmail;
       }
 
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('http://saas-backend:5000/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -246,7 +246,7 @@ export const AuthProvider = ({ children }) => {
       const slug = businessName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       const phone = '98' + Math.floor(10000000 + Math.random() * 90000000); // Generate a mock phone matching regex
       
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch('http://saas-backend:5000/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -306,7 +306,7 @@ export const AuthProvider = ({ children }) => {
     // 1. Try real backend login first (gets real MongoDB ObjectIds)
     if (credentials) {
       try {
-        const response = await fetch('http://localhost:5000/api/auth/login', {
+        const response = await fetch('http://saas-backend:5000/api/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(credentials)
