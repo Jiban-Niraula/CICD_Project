@@ -197,7 +197,7 @@ router.get('/callback/esewa/success', async (req, res) => {
     }
 
     if (payment.status === 'completed') {
-      return res.redirect(`http://localhost:5173/payment-success?uuid=${result.transaction_uuid}`);
+      return res.redirect(`http://saas-frontend:5173/payment-success?uuid=${result.transaction_uuid}`);
     }
 
     // Enforce Tenant Isolation verification
@@ -224,14 +224,14 @@ router.get('/callback/esewa/success', async (req, res) => {
         await handlePaidInvoice(invoice, 'esewa', result.transactionId);
       }
       
-      res.redirect(`http://localhost:5173/payment-success?uuid=${result.transaction_uuid}`);
+      res.redirect(`http://saas-frontend:5173/payment-success?uuid=${result.transaction_uuid}`);
     } else if (verification.status === 'pending_verification') {
       await payment.save();
-      res.redirect(`http://localhost:5173/payment-pending?uuid=${result.transaction_uuid}`);
+      res.redirect(`http://saas-frontend:5173/payment-pending?uuid=${result.transaction_uuid}`);
     } else {
       payment.status = 'failed';
       await payment.save();
-      res.redirect(`http://localhost:5173/payment-failed?uuid=${result.transaction_uuid}`);
+      res.redirect(`http://saas-frontend:5173/payment-failed?uuid=${result.transaction_uuid}`);
     }
 
   } catch (error) {
@@ -255,10 +255,10 @@ router.get('/callback/esewa/failure', async (req, res) => {
         await payment.save();
       }
     }
-    res.redirect(`http://localhost:5173/payment-failed`);
+    res.redirect(`http://saas-frontend:5173/payment-failed`);
   } catch (error) {
     console.error('eSewa Failure Callback Error:', error);
-    res.redirect(`http://localhost:5173/payment-failed`);
+    res.redirect(`http://saas-frontend:5173/payment-failed`);
   }
 });
 
@@ -278,7 +278,7 @@ router.get('/callback/mock', async (req, res) => {
     }
 
     if (payment.status === 'completed') {
-      return res.redirect(`http://localhost:5173/payment-success?uuid=${result.transaction_uuid}`);
+      return res.redirect(`http://saas-frontend:5173/payment-success?uuid=${result.transaction_uuid}`);
     }
 
     payment.status = result.status;
@@ -293,7 +293,7 @@ router.get('/callback/mock', async (req, res) => {
       await handlePaidInvoice(invoice, 'mock', result.transactionId);
     }
 
-    res.redirect(`http://localhost:5173/payment-success?uuid=${result.transaction_uuid}`);
+    res.redirect(`http://saas-frontend:5173/payment-success?uuid=${result.transaction_uuid}`);
 
   } catch (error) {
     console.error('Mock Callback Error:', error);

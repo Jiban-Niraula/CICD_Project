@@ -5,7 +5,7 @@ class MockProvider extends PaymentProvider {
     // Standard mock redirect parameters
     return {
       type: 'redirect',
-      url: `http://localhost:5000/api/payments/callback/mock?transaction_uuid=${payment.transaction_uuid}&status=completed`
+      url: `http://saas-frontend:5000/api/payments/callback/mock?transaction_uuid=${payment.transaction_uuid}&status=completed`
     };
   }
 

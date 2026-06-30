@@ -2,8 +2,8 @@ const axios = require('axios');
 
 async function testHttp() {
   try {
-    console.log("Sending POST to http://localhost:5000/api/auth/register...");
-    const response = await axios.post('http://localhost:5000/api/auth/register', {
+    console.log("Sending POST to http://saas-frontend:5000/api/auth/register...");
+    const response = await axios.post('http://saas-frontend:5000/api/auth/register', {
       name: "HTTP Test User",
       phone: "98" + Math.floor(10000000 + Math.random() * 90000000),
       email: `httptest_${Date.now()}@example.com`,

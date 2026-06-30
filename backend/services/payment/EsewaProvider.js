@@ -53,11 +53,11 @@ class EsewaProvider extends PaymentProvider {
 
     const successUrl =
       process.env.ESEWA_SUCCESS_URL ||
-      `http://localhost:5000/api/payments/callback/esewa/success`;
+      `http://saas-frontend:5000/api/payments/callback/esewa/success`;
 
     const failureUrl =
       process.env.ESEWA_FAILURE_URL ||
-      `http://localhost:5000/api/payments/callback/esewa/failure`;
+      `http://saas-frontend:5000/api/payments/callback/esewa/failure`;
 
     // =========================
     // SIGNATURE STRING (STRICT)
