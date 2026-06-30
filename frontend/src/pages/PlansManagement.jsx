@@ -27,7 +27,7 @@ const PlansManagement = () => {
     setLoading(true);
     try {
       // Fetch business status first to gate access
-      const businessRes = await fetch(`http://localhost:5000/api/dashboard/business/${businessId}`);
+      const businessRes = await fetch(`http://saas-backend:5000/api/dashboard/business/${businessId}`);
       const businessData = await businessRes.json();
       const status = businessData?.business?.status;
 
@@ -45,8 +45,8 @@ const PlansManagement = () => {
       }
 
       const [plansRes, offersRes] = await Promise.all([
-        fetch(`http://localhost:5000/api/plans/${businessId}`, { headers }),
-        fetch(`http://localhost:5000/api/offers/${businessId}`, { headers })
+        fetch(`http://saas-backend:5000/api/plans/${businessId}`, { headers }),
+        fetch(`http://saas-backend:5000/api/offers/${businessId}`, { headers })
       ]);
       const plansData = await plansRes.json();
       const offersData = await offersRes.json();
@@ -69,7 +69,7 @@ const PlansManagement = () => {
         headers['X-Business-Id'] = businessId;
       }
 
-      const res = await fetch(`http://localhost:5000/api/plans/${businessId}`, {
+      const res = await fetch(`http://saas-backend:5000/api/plans/${businessId}`, {
         method: 'POST',
         headers,
         body: JSON.stringify(newPlan)

@@ -89,7 +89,7 @@ export default function BusinessAuth({ mode: initialMode = "login" }) {
     async function fetchBusiness() {
       try {
         setLoadingBusiness(true);
-        const res = await fetch(`http://localhost:5000/api/portal/business/${slug}`);
+        const res = await fetch(`http://saas-backend:5000/api/portal/business/${slug}`);
         if (!res.ok) throw new Error("Business not found");
         const data = await res.json();
         setBusiness(data);
@@ -133,7 +133,7 @@ export default function BusinessAuth({ mode: initialMode = "login" }) {
     setAuthLoading(true);
     setAuthError("");
     try {
-      const res = await fetch("http://localhost:5000/api/auth/customer/register", {
+      const res = await fetch("http://saas-backend:5000/api/auth/customer/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

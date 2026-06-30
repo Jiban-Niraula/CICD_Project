@@ -42,7 +42,7 @@ const Payments = () => {
           console.log("Fetching invoices...");
           console.log("token exists:", !!token);
 
-          const response = await fetch('http://localhost:5000/api/invoices', {
+          const response = await fetch('http://saas-backend:5000/api/invoices', {
             method: "GET",
             headers: {
               'Authorization': `Bearer ${token}`,

@@ -39,7 +39,7 @@ export default function PublicGymWebsite() {
   const fetchSiteData = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:5000/api/portal/business/${slug}/public-site`);
+      const res = await fetch(`http://saas-backend:5000/api/portal/business/${slug}/public-site`);
       if (!res.ok) {
         if (res.status === 404) throw new Error('Gym website not found');
         throw new Error('Failed to load website content');
@@ -84,7 +84,7 @@ export default function PublicGymWebsite() {
         if (!authForm.name || !authForm.phone || !authForm.password) {
           throw new Error('Name, Phone and Password are required');
         }
-        const res = await fetch('http://localhost:5000/api/auth/customer/register', {
+        const res = await fetch('http://saas-backend:5000/api/auth/customer/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -122,7 +122,7 @@ export default function PublicGymWebsite() {
     try {
       const token = localStorage.getItem('saas_token');
       // 1. Purchase Membership (generates invoice)
-      const purchaseRes = await fetch('http://localhost:5000/api/portal/membership/purchase', {
+      const purchaseRes = await fetch('http://saas-backend:5000/api/portal/membership/purchase', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -137,7 +137,7 @@ export default function PublicGymWebsite() {
       if (!purchaseRes.ok) throw new Error(purchaseJson.message || 'Failed to initiate purchase');
 
       // 2. Initiate Payment (using mock provider)
-      const payRes = await fetch('http://localhost:5000/api/payments/initiate', {
+      const payRes = await fetch('http://saas-backend:5000/api/payments/initiate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -172,7 +172,7 @@ export default function PublicGymWebsite() {
     setProfileError('');
     try {
       const token = localStorage.getItem('saas_token');
-      const res = await fetch('http://localhost:5000/api/portal/profile', {
+      const res = await fetch('http://saas-backend:5000/api/portal/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

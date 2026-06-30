@@ -36,17 +36,17 @@ const Bookings = () => {
         'X-Business-Id': activeBusiness.businessId
       };
 
-      fetch('http://localhost:5000/api/customers', { headers })
+      fetch('http://saas-backend:5000/api/customers', { headers })
         .then(res => res.json())
         .then(data => setFormCustomers(Array.isArray(data) ? data : []))
         .catch(err => console.error(err));
 
-      fetch(`http://localhost:5000/api/services?businessId=${activeBusiness.businessId}`, { headers })
+      fetch(`http://saas-backend:5000/api/services?businessId=${activeBusiness.businessId}`, { headers })
         .then(res => res.json())
         .then(data => setFormServices(Array.isArray(data) ? data : []))
         .catch(err => console.error(err));
 
-      fetch('http://localhost:5000/api/businesses/current/staff', { headers })
+      fetch('http://saas-backend:5000/api/businesses/current/staff', { headers })
         .then(res => res.json())
         .then(data => setFormStaff(Array.isArray(data) ? data : []))
         .catch(err => console.error(err));

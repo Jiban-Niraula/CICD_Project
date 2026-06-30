@@ -56,7 +56,7 @@ const BusinessRegistration = () => {
         slug: formData.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
       };
 
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch('http://saas-backend:5000/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

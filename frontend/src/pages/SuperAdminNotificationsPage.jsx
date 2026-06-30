@@ -19,7 +19,7 @@ const SuperAdminNotificationsPage = () => {
 
   const fetchData = useCallback(() => {
     setLoading(true);
-    fetch('http://localhost:5000/api/superadmin/notifications', {
+    fetch('http://saas-backend:5000/api/superadmin/notifications', {
       headers: { 'x-user-role': 'super_admin' }
     })
       .then(r => r.json())
@@ -32,7 +32,7 @@ const SuperAdminNotificationsPage = () => {
   const handleResolveTicket = async (ticketId) => {
     setResolvingId(ticketId);
     try {
-      const res = await fetch(`http://localhost:5000/api/superadmin/support-tickets/${ticketId}/resolve`, {
+      const res = await fetch(`http://saas-backend:5000/api/superadmin/support-tickets/${ticketId}/resolve`, {
         method: 'PUT',
         headers: { 'x-user-role': 'super_admin' }
       });

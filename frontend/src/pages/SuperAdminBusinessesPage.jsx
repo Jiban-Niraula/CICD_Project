@@ -69,7 +69,7 @@ const SuperAdminBusinessesPage = () => {
     if (filter !== 'all') params.set('status', filter);
     if (search.trim()) params.set('search', search.trim());
 
-    fetch(`http://localhost:5000/api/superadmin/businesses?${params}`, {
+    fetch(`http://saas-backend:5000/api/superadmin/businesses?${params}`, {
       headers: { 'x-user-role': 'super_admin' }
     })
       .then(r => r.json())
@@ -86,7 +86,7 @@ const SuperAdminBusinessesPage = () => {
     setConfirmModal(null);
     setActionLoading(id);
     try {
-      const res = await fetch(`http://localhost:5000/api/superadmin/businesses/${id}/status`, {
+      const res = await fetch(`http://saas-backend:5000/api/superadmin/businesses/${id}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'x-user-role': 'super_admin' },
         body: JSON.stringify({ status })
@@ -114,7 +114,7 @@ const SuperAdminBusinessesPage = () => {
     setConfirmModal(null);
     setActionLoading(id);
     try {
-      const res = await fetch(`http://localhost:5000/api/superadmin/businesses/${id}`, {
+      const res = await fetch(`http://saas-backend:5000/api/superadmin/businesses/${id}`, {
         method: 'DELETE',
         headers: { 'x-user-role': 'super_admin' }
       });

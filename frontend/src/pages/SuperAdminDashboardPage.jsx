@@ -22,7 +22,7 @@ const SuperAdminDashboardPage = () => {
   const fetchData = () => {
     setLoading(true);
     setError(null);
-    fetch('http://localhost:5000/api/superadmin/dashboard', {
+    fetch('http://saas-backend:5000/api/superadmin/dashboard', {
       headers: { 'x-user-role': 'super_admin' }
     })
       .then(r => {

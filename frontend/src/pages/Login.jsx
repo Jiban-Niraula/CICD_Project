@@ -23,7 +23,7 @@ const handleLogin = async (e) => {
       payload.username = username; // backend should accept username field
     }
 
-    const response = await fetch('http://localhost:5000/api/auth/login', {
+    const response = await fetch('http://saas-backend:5000/api/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

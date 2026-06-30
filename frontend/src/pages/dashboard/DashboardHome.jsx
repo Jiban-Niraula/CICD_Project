@@ -40,8 +40,8 @@ const DashboardHome = () => {
         }
 
         const endpoint = isSuperAdmin 
-          ? 'http://localhost:5000/api/dashboard/superadmin' 
-          : 'http://localhost:5000/api/dashboard/business';
+          ? 'http://saas-backend:5000/api/dashboard/superadmin' 
+          : 'http://saas-backend:5000/api/dashboard/business';
 
         const headers = {
           'Authorization': `Bearer ${token}`
@@ -92,7 +92,7 @@ const DashboardHome = () => {
     if (!token || !businessId) return;
     try {
       setTabLoading(true);
-      const res = await fetch(`http://localhost:5000/api/plans/${businessId}`, {
+      const res = await fetch(`http://saas-backend:5000/api/plans/${businessId}`, {
         headers: { 'Authorization': `Bearer ${token}`, 'X-Business-Id': businessId }
       });
       if (res.ok) setPlans(await res.json());
@@ -108,7 +108,7 @@ const DashboardHome = () => {
     if (!token || !businessId) return;
     try {
       setTabLoading(true);
-      const res = await fetch(`http://localhost:5000/api/trainers/${businessId}`, {
+      const res = await fetch(`http://saas-backend:5000/api/trainers/${businessId}`, {
         headers: { 'Authorization': `Bearer ${token}`, 'X-Business-Id': businessId }
       });
       if (res.ok) setTrainers(await res.json());
@@ -124,7 +124,7 @@ const DashboardHome = () => {
     if (!token || !businessId) return;
     try {
       setTabLoading(true);
-      const res = await fetch(`http://localhost:5000/api/offers/${businessId}`, {
+      const res = await fetch(`http://saas-backend:5000/api/offers/${businessId}`, {
         headers: { 'Authorization': `Bearer ${token}`, 'X-Business-Id': businessId }
       });
       if (res.ok) setOffers(await res.json());
@@ -153,8 +153,8 @@ const DashboardHome = () => {
     if (!token || !businessId) return;
 
     const url = editingPlan 
-      ? `http://localhost:5000/api/plans/${businessId}/${editingPlan._id}`
-      : `http://localhost:5000/api/plans/${businessId}`;
+      ? `http://saas-backend:5000/api/plans/${businessId}/${editingPlan._id}`
+      : `http://saas-backend:5000/api/plans/${businessId}`;
     const method = editingPlan ? 'PUT' : 'POST';
 
     const featuresList = planForm.features.split(',')
@@ -193,7 +193,7 @@ const DashboardHome = () => {
     if (!confirm('Are you sure you want to delete this plan?')) return;
     const token = localStorage.getItem('saas_token');
     try {
-      const res = await fetch(`http://localhost:5000/api/plans/${businessId}/${planId}`, {
+      const res = await fetch(`http://saas-backend:5000/api/plans/${businessId}/${planId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}`, 'X-Business-Id': businessId }
       });
@@ -209,8 +209,8 @@ const DashboardHome = () => {
     if (!token || !businessId) return;
 
     const url = editingOffer
-      ? `http://localhost:5000/api/offers/${businessId}/${editingOffer._id}`
-      : `http://localhost:5000/api/offers/${businessId}`;
+      ? `http://saas-backend:5000/api/offers/${businessId}/${editingOffer._id}`
+      : `http://saas-backend:5000/api/offers/${businessId}`;
     const method = editingOffer ? 'PUT' : 'POST';
 
     const payload = {
@@ -246,7 +246,7 @@ const DashboardHome = () => {
     if (!confirm('Are you sure you want to delete this offer?')) return;
     const token = localStorage.getItem('saas_token');
     try {
-      const res = await fetch(`http://localhost:5000/api/offers/${businessId}/${offerId}`, {
+      const res = await fetch(`http://saas-backend:5000/api/offers/${businessId}/${offerId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}`, 'X-Business-Id': businessId }
       });
@@ -262,8 +262,8 @@ const DashboardHome = () => {
     if (!token || !businessId) return;
 
     const url = editingTrainer
-      ? `http://localhost:5000/api/trainers/${businessId}/${editingTrainer._id}`
-      : `http://localhost:5000/api/trainers/${businessId}`;
+      ? `http://saas-backend:5000/api/trainers/${businessId}/${editingTrainer._id}`
+      : `http://saas-backend:5000/api/trainers/${businessId}`;
     const method = editingTrainer ? 'PUT' : 'POST';
 
     const payload = {
@@ -295,7 +295,7 @@ const DashboardHome = () => {
     if (!confirm('Are you sure you want to delete this trainer?')) return;
     const token = localStorage.getItem('saas_token');
     try {
-      const res = await fetch(`http://localhost:5000/api/trainers/${businessId}/${trainerId}`, {
+      const res = await fetch(`http://saas-backend:5000/api/trainers/${businessId}/${trainerId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}`, 'X-Business-Id': businessId }
       });
@@ -869,7 +869,7 @@ const DashboardHome = () => {
                         <button 
                           onClick={async () => {
                             const token = localStorage.getItem('saas_token');
-                            await fetch(`http://localhost:5000/api/plans/${businessId}/${plan._id}`, {
+                            await fetch(`http://saas-backend:5000/api/plans/${businessId}/${plan._id}`, {
                               method: 'PUT',
                               headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`, 'X-Business-Id': businessId },
                               body: JSON.stringify({ isActive: !plan.isActive })
@@ -1047,7 +1047,7 @@ const DashboardHome = () => {
                         <button 
                           onClick={async () => {
                             const token = localStorage.getItem('saas_token');
-                            await fetch(`http://localhost:5000/api/offers/${businessId}/${offer._id}`, {
+                            await fetch(`http://saas-backend:5000/api/offers/${businessId}/${offer._id}`, {
                               method: 'PUT',
                               headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`, 'X-Business-Id': businessId },
                               body: JSON.stringify({ isActive: !offer.isActive, status: !offer.isActive ? 'active' : 'paused' })
@@ -1307,7 +1307,7 @@ const DashboardHome = () => {
                 rel="noreferrer"
                 style={{ color: currentAccent, textDecoration: 'underline', fontWeight: '800' }}
               >
-                http://localhost:5173/{data.business.slug}/portal
+                http://saas-frontend/{data.business.slug}/portal
               </a>
             </div>
           )}

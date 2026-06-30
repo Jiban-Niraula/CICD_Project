@@ -406,7 +406,7 @@ export default function AppCenter() {
       if (!businessId) throw new Error('Business not found');
 
       const body = { features: featureStates };
-      const res = await fetch(`http://localhost:5000/api/businesses/${businessId}/features`, {
+      const res = await fetch(`http://saas-backend:5000/api/businesses/${businessId}/features`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
         body: JSON.stringify(body),

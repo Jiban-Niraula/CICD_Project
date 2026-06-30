@@ -23,7 +23,7 @@ const SuperAdminLayout = () => {
   useEffect(() => {
     if (!isSuperAdmin) return;
     const token = localStorage.getItem('saas_token');
-    fetch('http://localhost:5000/api/superadmin/notifications', {
+    fetch('http://saas-backend:5000/api/superadmin/notifications', {
       headers: {
         'x-user-role': 'super_admin',
         ...(token ? { 'Authorization': `Bearer ${token}` } : {})

@@ -9,7 +9,7 @@ const SuperadminDashboard = () => {
   const fetchData = () => {
     setLoading(true);
     setError(null);
-    fetch('http://localhost:5000/api/dashboard/superadmin')
+    fetch('http://saas-backend:5000/api/dashboard/superadmin')
       .then(res => {
         if (!res.ok) throw new Error(`Server responded with ${res.status}`);
         return res.json();

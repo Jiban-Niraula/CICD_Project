@@ -46,7 +46,7 @@ const SuperAdminPendingPage = () => {
 
   const fetchPending = useCallback(() => {
     setLoading(true);
-    fetch('http://localhost:5000/api/superadmin/businesses?status=pending', {
+    fetch('http://saas-backend:5000/api/superadmin/businesses?status=pending', {
       headers: { 'x-user-role': 'super_admin' }
     })
       .then(r => r.json())
@@ -59,7 +59,7 @@ const SuperAdminPendingPage = () => {
   const handleStatusChange = async (id, status, businessName) => {
     setActionLoading(id + status);
     try {
-      const res = await fetch(`http://localhost:5000/api/superadmin/businesses/${id}/status`, {
+      const res = await fetch(`http://saas-backend:5000/api/superadmin/businesses/${id}/status`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', 'x-user-role': 'super_admin' },
         body: JSON.stringify({ status })
@@ -85,7 +85,7 @@ const SuperAdminPendingPage = () => {
     setConfirmModal(null);
     setActionLoading(id + 'delete');
     try {
-      const res = await fetch(`http://localhost:5000/api/superadmin/businesses/${id}`, {
+      const res = await fetch(`http://saas-backend:5000/api/superadmin/businesses/${id}`, {
         method: 'DELETE',
         headers: { 'x-user-role': 'super_admin' }
       });

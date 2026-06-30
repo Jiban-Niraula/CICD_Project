@@ -36,7 +36,7 @@ const Customers = () => {
       return;
     }
     try {
-      const res = await fetch('http://localhost:5000/api/customers', {
+      const res = await fetch('http://saas-backend:5000/api/customers', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'X-Business-Id': bId
@@ -60,7 +60,7 @@ const Customers = () => {
     if (!token || !bId) return;
 
     try {
-      const res = await fetch('http://localhost:5000/api/customers', {
+      const res = await fetch('http://saas-backend:5000/api/customers', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

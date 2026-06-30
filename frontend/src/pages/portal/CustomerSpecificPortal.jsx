@@ -76,7 +76,7 @@ export default function CustomerSpecificPortal() {
     try {
       setLoading(true);
       setError('');
-      const res = await fetch(`http://localhost:5000/api/portal/customer/${customerId}`);
+      const res = await fetch(`http://saas-backend:5000/api/portal/customer/${customerId}`);
       if (!res.ok) {
         if (res.status === 404) throw new Error('Customer profile link is invalid or expired.');
         throw new Error('Failed to connect to portal service.');
@@ -110,7 +110,7 @@ export default function CustomerSpecificPortal() {
         if (!authForm.name || !authForm.phone || !authForm.password) {
           throw new Error('Name, Phone and Password are required');
         }
-        const res = await fetch('http://localhost:5000/api/auth/customer/register', {
+        const res = await fetch('http://saas-backend:5000/api/auth/customer/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -151,7 +151,7 @@ export default function CustomerSpecificPortal() {
 
     try {
       const token = localStorage.getItem('saas_token');
-      const res = await fetch('http://localhost:5000/api/payments/initiate', {
+      const res = await fetch('http://saas-backend:5000/api/payments/initiate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

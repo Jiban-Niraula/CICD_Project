@@ -14,7 +14,7 @@ const BusinessDashboard = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/api/dashboard/business/${businessId}`)
+    fetch(`http://saas-backend:5000/api/dashboard/business/${businessId}`)
       .then(res => res.json())
       .then(result => {
         setData(result);
